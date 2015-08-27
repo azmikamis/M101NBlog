@@ -16,14 +16,6 @@ namespace M101DotNet.WebApp.Controllers
     {
         public async Task<ActionResult> Index()
         {
-            //SystemCheck
-            //var i = 0;
-            //for (var bit = 0; bit < 32; bit++)
-            //{
-            //    i |= bit << bit;
-            //}
-            //ViewBag.Message = i.ToString();
-
             var blogContext = new BlogContext();
             var recentPosts = await blogContext.Posts.Find(x => true)
                 .SortByDescending(x => x.CreatedAtUtc)
@@ -113,6 +105,7 @@ namespace M101DotNet.WebApp.Controllers
 
             var posts = await blogContext.Posts.Find(filter)
                 .SortByDescending(x => x.CreatedAtUtc)
+				.Limit(10)
                 .ToListAsync();
 
             return View(posts);

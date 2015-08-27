@@ -1,0 +1,3 @@
+﻿db.posts.createIndex({CreatedAtUtc:-1})
+db.posts.createIndex({Tags:1})
+db.posts.createIndex({Tags:1,CreatedAtUtc:-1})
